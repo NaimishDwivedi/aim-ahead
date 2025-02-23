@@ -42,7 +42,7 @@ async function Header() {
             alt="logo"
             className="h-12 py-1 w-auto object-contain"
           />
-          <span className="text-2xl ">Aim<span className="text-3xl text-blue-400 font-bold">A</span>head</span>
+          <span className="text-2xl ">Aim<span className="text-3xl text-blue-400 font-bold">A</span>head123</span>
         </Link>
         <div className="flex items-center space-x-2 md:space-x-4">
           <SignedIn>
