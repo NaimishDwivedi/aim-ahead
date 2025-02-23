@@ -60,10 +60,10 @@ export async function updateUser(data) {
     );
 
     revalidatePath("/");
-    return {success:true, ...result};
+    return result.user;
   } catch (error) {
     console.error("Error updating user and industry:", error.message);
-    throw new Error("Failed to update profile"+ error.message);
+    throw new Error("Failed to update profile");
   }
 }
 
@@ -71,27 +71,32 @@ export async function getUserOnboardingStatus() {
   const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
 
-  const user = await db.user.findUnique({
+  console.log("Fetching user with clerkUserId:", userId);
+
+  let user = await db.user.findUnique({
     where: { clerkUserId: userId },
+    select: { industry: true },
   });
 
-  if (!user) throw new Error("User not found");
+  if (!user) {
+    console.warn("User not found. Creating a new user in the database...");
 
-  try {
-    const user = await db.user.findUnique({
-      where: {
-        clerkUserId: userId,
-      },
-      select: {
-        industry: true,
-      },
-    });
+    try {
+      user = await db.user.create({
+        data: {
+          clerkUserId: userId, // Ensure this matches your DB schema
+          email: "default@example.com", // Provide a default value
+          name: "New User", // Adjust based on your schema
+          industry: null, // Optional, adjust as needed
+        },
+      });
 
-    return {
-      isOnboarded: !!user?.industry,
-    };
-  } catch (error) {
-    console.error("Error checking onboarding status:", error);
-    throw new Error("Failed to check onboarding status");
+      console.log("User successfully created:", user);
+    } catch (error) {
+      console.error("Error creating user:", error);
+      throw new Error("Failed to create user.");
+    }
   }
+
+  return { isOnboarded: !!user.industry };
 }
