@@ -30,7 +30,12 @@ import {
 import { checkUser } from "@/lib/checkUser";
 
 async function Header() {
-  await checkUser()
+  // await checkUser();
+  const result = await checkUser();
+  console.log("User data:", result); // Debugging line
+
+  // Ensure result is not null before accessing industry
+  const dashboardLink = result && result.industry ? "/dashboard" : "/onboarding";
   return (
     <header className="fixed top-0 w-full border-b bg-background/80 backdrop-blur-md z-50 supports-[backdrop-filter]:bg-background/60">
       <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
@@ -42,11 +47,13 @@ async function Header() {
             alt="logo"
             className="h-12 py-1 w-auto object-contain"
           />
-          <span className="text-2xl ">Aim<span className="text-3xl text-blue-400 font-bold">A</span>head</span>
+          <span className="text-2xl ">
+            Aim<span className="text-3xl text-[#f49137] font-bold">A</span>head
+          </span>
         </Link>
         <div className="flex items-center space-x-2 md:space-x-4">
           <SignedIn>
-            <Link href={"/dashboard"}>
+            <Link href={dashboardLink}>
               <Button variant="outline">
                 <LayoutDashboard className="h-4 w-4" />
                 <span className="hidden md:block">Industry Insights</span>

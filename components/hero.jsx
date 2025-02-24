@@ -26,7 +26,7 @@ function HeroSection() {
       <div className="space-y-6 text-center">
         <div className="space-y-6 mx-auto">
           <h1 className="text-4xl font-bold md:text-5xl lg:text-6xl xl:text-7xl gradient-title">
-            Aim<span className="text-blue-400">A</span>head - Your AI Partner
+            Aim<span className="text-[#f49137]">A</span>head - Your AI Partner
             for <br /> Career Breakthroughs
           </h1>
 
@@ -36,7 +36,7 @@ function HeroSection() {
           </p>
         </div>
         <div>
-          <Link href="/dashboard">
+          <Link href="/onboarding">
             <Button size="lg" className="px-8">
               Get Started
             </Button>
