@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { useEffect, useRef } from "react";
 import { Button } from "./ui/button";
 import Image from "next/image";
+import { TextEffect } from "@/components/ui/text-effect";
 
 function HeroSection() {
   const imageRef = useRef(null);
@@ -30,11 +31,12 @@ function HeroSection() {
             for <br /> Career Breakthroughs
           </h1>
 
-          <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl">
+          <TextEffect per='char' preset='fade' className="mx-auto max-w-[600px] text-muted-foreground md:text-xl">
             Boost your career with expert guidance, AI-driven interview prep,
             and smart tools for job success.
-          </p>
+          </TextEffect>
         </div>
+
         <div>
           <Link href="/onboarding">
             <Button size="lg" className="px-8">
