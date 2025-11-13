@@ -26,11 +26,11 @@ export async function updateUser(data) {
           },
         });
 
-        // If industry doesn't exist, create it with default values
+        // If industry doesn't exist, create it
         if (!industryInsight) {
           const insights = await generateAIInsights(data.industry);
 
-          industryInsight = await db.industryInsight.create({
+          industryInsight = await tx.industryInsight.create({
             data: {
               industry: data.industry,
               ...insights,
@@ -55,12 +55,12 @@ export async function updateUser(data) {
         return { updatedUser, industryInsight };
       },
       {
-        timeout: 10000, // default: 5000
+        timeout: 10000,
       }
     );
 
     revalidatePath("/");
-    return result.user;
+    return result.updatedUser;
   } catch (error) {
     console.error("Error updating user and industry:", error.message);
     throw new Error("Failed to update profile");
@@ -68,22 +68,15 @@ export async function updateUser(data) {
 }
 
 export async function getUserOnboardingStatus() {
-  const authData = await auth();
   const { userId } = await auth();
 
-  let user2 = await db.user.findUnique({
-    where: { clerkUserId: userId },
-    select: { industry: true },
-  });
-  
-  // console.log("Database user:", user2); 
   if (!userId) throw new Error("Unauthorized");
 
   console.log("Fetching user with clerkUserId:", userId);
 
   let user = await db.user.findUnique({
     where: { clerkUserId: userId },
-    select: { industry: true },
+    select: { industry: true, id: true },
   });
 
   if (!user) {
@@ -92,14 +85,14 @@ export async function getUserOnboardingStatus() {
     try {
       user = await db.user.create({
         data: {
-          clerkUserId: userId, // Ensure this matches your DB schema
-          email: "default@example.com", // Provide a default value
-          name: "New User", // Adjust based on your schema
-          industry: null, // Optional, adjust as needed
+          clerkUserId: userId,
+          email: "default@example.com",
+          name: "New User",
+          industry: null,
         },
       });
 
-      console.log("User successfully created:", user);
+      console.log("User successfully created:", user.id);
     } catch (error) {
       console.error("Error creating user:", error);
       throw new Error("Failed to create user.");

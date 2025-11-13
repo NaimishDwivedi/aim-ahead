@@ -17,9 +17,9 @@ import { dark } from "@clerk/themes";
 
 const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
-  title: "AimAhead",
+  title: "VisionStack",
   description:
-    "AimAhead is an AI-powered platform designed to help students track and optimize their career preparation. With personalized insights, skill tracking, and goal management, AimAhead guides you every step of the way toward your future success. Stay on track, stay motivated, and always aim ahead with smart, data-driven career guidance.",
+    "VisionStack is an AI-powered platform designed to help students track and optimize their career preparation. With personalized insights, skill tracking, and goal management, VisionStack guides you every step of the way toward your future success. Stay on track, stay motivated, and always vision stack with smart, data-driven career guidance.",
 };
 
 export default function RootLayout({ children }) {
@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
     >
       <html lang="en" suppressHydrationWarning>
         <head>
-        <link rel="icon" href="/favicon.png" type="image/png" />
+        <link rel="icon" href="/visionstaclogo.png" type="image/png" />
         </head>
         <body className={`${inter.className}`}>
           <ThemeProvider
@@ -45,7 +45,7 @@ export default function RootLayout({ children }) {
             <Toaster richColors />
             <footer className="bg-muted/50 py-12">
               <div className="container mx-auto px-4 text-center text-grey-200">
-                <p>&copy; Copyright Naimish Dwivedi 2025</p>
+                <p>&copy; Copyright Pravish Dwivedi 2025</p>
               </div>
             </footer>
           </ThemeProvider>

@@ -27,7 +27,7 @@ function HeroSection() {
       <div className="space-y-6 text-center">
         <div className="space-y-6 mx-auto">
           <h1 className="text-4xl font-bold md:text-5xl lg:text-6xl xl:text-7xl gradient-title">
-            Aim<span className="text-[#f49137]">A</span>head - Your AI Partner
+            Vision<span className="text-[#f49137]">S</span>tack - Your AI Partner
             for <br /> Career Breakthroughs
           </h1>
 
@@ -47,7 +47,7 @@ function HeroSection() {
         <div className="hero-image-wrapper mt-5 md:mt-0  overflow-hidden">
           <div ref={imageRef} className="hero-image">
             <Image
-              src={"/AimAheadBannerHD.jpg"}
+              src={"/VisionStackBannerHD.png"}
               width={1100}
               height={720}
               alt="Banner Preview"

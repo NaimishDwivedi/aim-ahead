@@ -35,20 +35,22 @@ async function Header() {
   console.log("User data:", result); // Debugging line
 
   // Ensure result is not null before accessing industry
-  const dashboardLink = result && result.industry ? "/dashboard" : "/onboarding";
+  const dashboardLink =
+    result && result.industry ? "/dashboard" : "/onboarding";
   return (
     <header className="fixed top-0 w-full border-b bg-background/80 backdrop-blur-md z-50 supports-[backdrop-filter]:bg-background/60">
       <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center">
           <Image
-            src="/AimAheadLogoPNG.png"
+            src="/visionstaclogo.png"
             width={200}
             height={60}
             alt="logo"
             className="h-12 py-1 w-auto object-contain"
           />
           <span className="text-2xl ">
-            Aim<span className="text-3xl text-[#f49137] font-bold">A</span>head
+            Vision<span className="text-3xl text-[#f49137] font-bold">S</span>
+            tack
           </span>
         </Link>
         <div className="flex items-center space-x-2 md:space-x-4">
@@ -61,7 +63,8 @@ async function Header() {
             </Link>
 
             <DropdownMenu>
-              <DropdownMenuTrigger>
+              {/* ✅ FIX: Add asChild to prevent nested buttons */}
+              <DropdownMenuTrigger asChild>
                 <Button>
                   <StarsIcon className="h-4 w-4" />
                   <span className="hidden md:block">Growth Tools</span>

@@ -6,7 +6,9 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { revalidatePath } from "next/cache";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+// ONLY change the model name - keep everything else the same
+const model = genAI.getGenerativeModel({ model: "gemini-1.0-pro" });
 
 export async function saveResume(content) {
   const { userId } = await auth();

@@ -234,8 +234,8 @@ export function EntryForm({ type, entries, onChange }) {
                 </>
               ) : (
                 <>
-                  <Sparkles className="h-4 w-4 mr-2" />
-                  Improve with AI
+                  {/* <Sparkles className="h-4 w-4 mr-2" /> */}
+                  {/* Improve with AI */}
                 </>
               )}
             </Button>
